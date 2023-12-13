@@ -35,8 +35,9 @@
                                  aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <iframe src="https://www.youtube.com/embed/${requestScope.movie.src}">
+                                        <iframe src="https://www.youtube.com/embed/${requestScope.movie.src}" allowfullscreen>
                                         </iframe>
+                                        
                                     </div>
                                 </div>
                             </div> 
@@ -152,7 +153,7 @@
                             <div class="myselft_cmt ${((sessionScope.account==null)?'':'show')}">
                                 <p class="ms_mustbelog">You must be <a href="login">Logged in</a> to post a review.</p>
                                 <div class="comment-item">
-                                    <img src="./images/${sessionScope.user_info.avatar}" alt="avatar">
+                                    <img src="${sessionScope.user_info.avatar}" alt="avatar">
                                     <div class="comment-item-right">
                                         <input data-uiId="${sessionScope.user_info.id}" data-mId="${requestScope.movie.id}" onkeyup="handleAjaxAddCmt(event, this)" type="text" name="ms_cmt" placeholder="How do you feel about film...">
                                         <!-- ranh lam them cai btn binh luan + btn huy -->
@@ -164,7 +165,7 @@
                                 <div class="comment__item-wrapper">
                                     <c:forEach items="${requestScope.cmtList}" var="cm" >
                                         <div class="comment-item">
-                                            <img src="./images/${cm.ui.avatar}" alt="">
+                                            <img src="${cm.ui.avatar}" alt="">
                                             <div class="comment-item-right">
                                                 <p>
                                                     <strong>${cm.ui.fullname}</strong>

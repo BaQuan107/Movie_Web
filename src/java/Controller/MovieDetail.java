@@ -84,7 +84,7 @@ public class MovieDetail extends HttpServlet {
             String commentItem = "";
             for (Comment c : cmtList) {
                 String Item = "<div class=\"comment-item\">\n"
-                        + "                 <img src=\"./images/"+c.getUi().getAvatar()+"\" alt=\"\">\n"
+                        + "                 <img src=\""+c.getUi().getAvatar()+"\" alt=\"\">\n"
                         + "                 <div class=\"comment-item-right\">\n"
                         + "                     <p>\n"
                         + "                         <strong>"+c.getUi().getFullname()+"</strong>\n"

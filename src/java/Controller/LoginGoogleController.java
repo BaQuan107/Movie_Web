@@ -37,21 +37,21 @@ public class LoginGoogleController extends HttpServlet {
         } else {
             String accessToken = GoogleUtils.getToken(code);
             GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-            out.println(googlePojo.getId());
-            
-            out.println(googlePojo.getEmail());
-            out.println(googlePojo.getGiven_name());
-            out.println(googlePojo.getPicture());
-            String username = "";
-            int atIndex = googlePojo.getEmail().indexOf('@');
-
-            // Kiểm tra xem có ký tự "@" trong chuỗi không
-            if (atIndex != -1) {
-                // Sử dụng phương thức substring để lấy phần trước ký tự "@"
-                String u = googlePojo.getEmail().substring(0, atIndex);
-                username = u;
-            }
-            out.println(username);
+//            out.println(googlePojo.getId());
+//            
+//            out.println(googlePojo.getEmail());
+//            out.println(googlePojo.getGiven_name());
+//            out.println(googlePojo.getPicture());
+//            String username = "";
+//            int atIndex = googlePojo.getEmail().indexOf('@');
+//
+//            // Kiểm tra xem có ký tự "@" trong chuỗi không
+//            if (atIndex != -1) {
+//                // Sử dụng phương thức substring để lấy phần trước ký tự "@"
+//                String u = googlePojo.getEmail().substring(0, atIndex);
+//                username = u;
+//            }
+            //out.println(username);
 
 //            HttpSession session = request.getSession();
 //            UserHandle uad = new UserHandle();
@@ -70,22 +70,22 @@ public class LoginGoogleController extends HttpServlet {
 //            response.sendRedirect("my-info");
             
             
-//            UserHandle uad = new UserHandle();
-//            User_Acc ua = uad.findAcc(username, password);
-//            HttpSession session = request.getSession();
-//            if (ua == null) {
-//                request.setAttribute("error", "Wrong username or password!");
-//                request.getRequestDispatcher("/main/account/login.jsp").forward(request, response);
-//            } //being block
-//            else if (ua.getState() == 1) {
-//                request.setAttribute("error", "Your account are being blocked!");
-//                request.getRequestDispatcher("/main/account/login.jsp").forward(request, response);
-//            } else {
-//                session.setAttribute("account", ua);
-//                User_Info ui = uad.getUserInfoByUser_AccId(ua.getId());
-//                session.setAttribute("user_info", ui);
-//                response.sendRedirect("/Movie_Web/");
-//            }
+            UserHandle uad = new UserHandle();
+            User_Acc ua = uad.findAcc(googlePojo.getEmail(), "123");
+            HttpSession session = request.getSession();
+            if (ua == null) {
+                request.setAttribute("error", "Wrong username or password!");
+                request.getRequestDispatcher("/main/account/login.jsp").forward(request, response);
+            } //being block
+            else if (ua.getState() == 1) {
+                request.setAttribute("error", "Your account are being blocked!");
+                request.getRequestDispatcher("/main/account/login.jsp").forward(request, response);
+            } else {
+                session.setAttribute("account", ua);
+                User_Info ui = uad.getUserInfoByUser_AccId(ua.getId());
+                session.setAttribute("user_info", ui);
+                response.sendRedirect("/Movie_Web/");
+            }
         }
 
     }

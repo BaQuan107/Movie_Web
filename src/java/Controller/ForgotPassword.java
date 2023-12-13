@@ -87,7 +87,7 @@ public class ForgotPassword extends HttpServlet {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(
-                                "******", "*********");// Specify the Username and the PassWord
+                                "ba.quan10073@gmail.com", "Quan10072002");// Specify the Username and the PassWord
                     }
                 });
 

@@ -63,8 +63,8 @@ public class MyInfo extends HttpServlet {
         if(!fileNameTmp.equals("")){
             deleteImg("\\"+ fileName);
             fileNameTmp = new File(fileNameTmp).getName();
-            fileName = "User_Img/"+fileNameTmp;
-            part.write(this.getFolderUpload().getAbsolutePath() + File.separator + fileName);
+            fileName = "./images/User_Img/"+fileNameTmp;
+            
         }
         
         List<Integer> movieOwn=null;
@@ -74,7 +74,7 @@ public class MyInfo extends HttpServlet {
         session.setAttribute("user_info", uiTmp);
         User_Info uiUpdate = (User_Info) session.getAttribute("user_info");
         out.print("./images/"+uiUpdate.getAvatar());
-        //response.sendRedirect("my-info");
+        response.sendRedirect("my-info");
     }
     
     private String extractFileName(Part part) {

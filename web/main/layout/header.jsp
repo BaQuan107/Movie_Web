@@ -54,10 +54,10 @@
                             </div>
                             <!-- add class onclick to appear avatar-down-->
                             <div class="avatar-wrapper">
-                                <img src="./images/${sessionScope.user_info.avatar}" onerror="this.onerror = null;this.src = './images/avatar.jpg';console.clear()" alt="avatar">
+                                <img src="${sessionScope.user_info.avatar}" onerror="this.onerror = null;this.src = './images/avatar.jpg';console.clear()" alt="avatar">
                                 <div class="avatar-down">
                                     <div class="avatar__down-header">
-                                        <img src="./images/${sessionScope.user_info.avatar}" onerror="this.onerror = null;this.src = './images/avatar.jpg';console.clear()" alt="avatar">
+                                        <img src="${sessionScope.user_info.avatar}" onerror="this.onerror = null;this.src = './images/avatar.jpg';console.clear()" alt="avatar">
                                         <div class="name__money-wrapper">
                                             <p>${sessionScope.user_info.fullname}</p>
                                             <span>${sessionScope.user_info.acc_money}</span>

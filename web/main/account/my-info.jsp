@@ -19,10 +19,10 @@
     </head>
     <body>
         <!-- appear when some page is load -->
-        <div id="page-loading">
+<!--        <div id="page-loading">
             <i class="fas fa-spinner"></i>
             <p>Loading...</p>
-        </div>
+        </div>-->
         <div id="page-heading">
             <!-- them onactive + bo container de thay doi size cua header -->
             <%@include file="../layout/header.jsp"%> 
@@ -33,7 +33,7 @@
                 <div class="form-wrapper">
                     <form id="form-submit" action="my-info" method="post"  enctype="multipart/form-data">
                         <div class="PMI-wrapper">
-                            <img src="./images/${sessionScope.user_info.avatar}" onerror="this.onerror = null;this.src = './images/avatar.jpg';console.clear()" alt="avatar">
+                            <img src="${sessionScope.user_info.avatar}" onerror="this.onerror = null;this.src = './images/avatar.jpg';console.clear()" alt="avatar">
                             <label for="avatar">
                                 <div class="change-avatar">
                                     <i class="fas fa-camera"></i>
@@ -71,7 +71,7 @@
                             </div>
                             <input type="text" name="money" value="$${sessionScope.user_info.acc_money}" id="money" readonly>
                         </div>
-                        <input type="submit" value="Update" onclick="handleAjaxUpdateInfo(event, this)">
+                        <input type="submit" value="Update" >
                     </form>
                 </div>
             </div>

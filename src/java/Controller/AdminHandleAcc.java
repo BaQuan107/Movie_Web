@@ -1,4 +1,3 @@
-
 package Controller;
 
 import DAO.UserHandle;
@@ -33,6 +32,7 @@ public class AdminHandleAcc extends HttpServlet {
         String action = request.getParameter("action");
         UserHandle urd = new UserHandle();
         PrintWriter out = response.getWriter();
+
         
         if (action.equals("search-acc")) {
 
@@ -44,7 +44,11 @@ public class AdminHandleAcc extends HttpServlet {
 
             List<User_Info> UiListTmp = new ArrayList<>();
             if (input != null && !input.equals("")) {
-                UiListTmp.addAll(urd.getSearchedUserInfo(select, input));
+                for (User_Info user_Info : urd.getSearchedUserInfo(select, input)) {
+                    if(!user_Info.getPhone().equals("0912851955")) UiListTmp.add(user_Info);
+                }
+                
+                
             }
 
             //page
@@ -84,13 +88,13 @@ public class AdminHandleAcc extends HttpServlet {
                         + "                                        <td>" + u.getFullname() + "</td>\n"
                         + "                                        <td>" + u.getEmail() + "</td>\n"
                         + "                                        <td>" + u.getPhone() + "</td>\n"
-                        + "                                        <td>" + (u.isGender()==true? "Male":"Female") + "</td>\n"
+                        + "                                        <td>" + (u.isGender() == true ? "Male" : "Female") + "</td>\n"
                         + "                                        <td>" + u.getBirth() + "</td>\n"
                         + "                                        <td>" + u.getAcc_money() + "</td>\n"
                         + "                                        <td>\n"
-                        + (ua.getState() == 1 ? 
-                        "<i data-id=\""+ua.getId()+"\" data-type=\"Block\" onclick=\"handleAjaxChangeStateUserAcc(this)\" class=\"fas fa-lock\"></i>\n" 
-                        : "<i data-id=\""+ua.getId()+"\" data-type=\"Unblock\" onclick=\"handleAjaxChangeStateUserAcc(this)\" class=\"fas fa-lock-open\"></i>\n")
+                        + (ua.getState() == 1
+                        ? "<i data-id=\"" + ua.getId() + "\" data-type=\"Block\" onclick=\"handleAjaxChangeStateUserAcc(this)\" class=\"fas fa-lock\"></i>\n"
+                        : "<i data-id=\"" + ua.getId() + "\" data-type=\"Unblock\" onclick=\"handleAjaxChangeStateUserAcc(this)\" class=\"fas fa-lock-open\"></i>\n")
                         + "                                        </td>\n"
                         + "                                    </tr>";
             }
@@ -109,8 +113,8 @@ public class AdminHandleAcc extends HttpServlet {
                             + "                                    </li>";
                 }
                 for (int i = 1; i <= num; i++) {
-                    pagination += "<li data-id=\""+i+"\" onclick=\"handleAjaxSearchAcc(this)\" "
-                            + "class=\"page-item "+(i==page?"active":"")+"\"><a class=\"page-link\" href=\"#\">"+i+"</a></li>";
+                    pagination += "<li data-id=\"" + i + "\" onclick=\"handleAjaxSearchAcc(this)\" "
+                            + "class=\"page-item " + (i == page ? "active" : "") + "\"><a class=\"page-link\" href=\"#\">" + i + "</a></li>";
                 }
                 if (page < num) {
                     pagination += "<li data-id=\"" + (page + 1) + "\" onclick=\"handleAjaxSearchAcc(this)\" class=\"page-item\">\n"
@@ -123,18 +127,18 @@ public class AdminHandleAcc extends HttpServlet {
                 pagination += "</ul>\n"
                         + "                            </nav>";
             }
-            
-            out.println(table+pagination);
-        }
-        else if(action.equals("update-state")){
+
+            out.println(table + pagination);
+        } else if (action.equals("update-state")) {
             String id = request.getParameter("id");
             String type = request.getParameter("type");
-            
+
             urd.BlockAUnBlock(type, Integer.parseInt(id));
-            if(type.equals("Block"))
-                out.println("<i data-id=\""+id+"\" data-type=\"Unblock\" onclick=\"handleAjaxChangeStateUserAcc(this)\" class=\"fas fa-lock-open\"></i>\n");
-            else if(type.equals("Unblock"))
-                out.println("<i data-id=\""+id+"\" data-type=\"Block\" onclick=\"handleAjaxChangeStateUserAcc(this)\" class=\"fas fa-lock\"></i>\n");
+            if (type.equals("Block")) {
+                out.println("<i data-id=\"" + id + "\" data-type=\"Unblock\" onclick=\"handleAjaxChangeStateUserAcc(this)\" class=\"fas fa-lock-open\"></i>\n");
+            } else if (type.equals("Unblock")) {
+                out.println("<i data-id=\"" + id + "\" data-type=\"Block\" onclick=\"handleAjaxChangeStateUserAcc(this)\" class=\"fas fa-lock\"></i>\n");
+            }
         }
     }
 
