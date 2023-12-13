@@ -70,7 +70,27 @@ public class DBContext {
 	private final String portNumber = "1433";
 	private final String userID = "sa";
 	private final String password = "sa";
+        
+        
+    public static void main(String[] args) {
+        String email = "quannbhe163333@gg";
+        String u = "";
+        // Tìm vị trí của ký tự "@" trong chuỗi
+        int atIndex = email.indexOf('@');
+        
+        // Kiểm tra xem có ký tự "@" trong chuỗi không
+        if (atIndex != -1) {
+            // Sử dụng phương thức substring để lấy phần trước ký tự "@"
+            String username = email.substring(0, atIndex);
+            u=username;
+            // In ra phần trước ký tự "@"
+            System.out.println("Username: " + username);
+        }
+        System.out.println("Username: " + u);
+    
+}
 
+        
 }
 
 

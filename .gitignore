@@ -30,3 +30,5 @@ replay_pid*
 /nbactions.xml
 /nb-configuration.xml
 /Movie_Web/nbproject/private/
+/loginGoogle/nbproject/private/
+/loginGoogle/build/
