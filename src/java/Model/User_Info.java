@@ -35,6 +35,12 @@ public class User_Info {
         this.movieOwn = movieOwn;
     }
 
+    public User_Info(int id, double acc_money) {
+        this.id = id;
+        
+        this.acc_money = acc_money;
+    }
+    
     public int getId() {
         return id;
     }

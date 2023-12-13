@@ -67,7 +67,7 @@
                         <div class="PMI-wrapper">
                             <div class="money-wrapper">
                                 <label for="money">Account Money</label>
-                                <a href="#">Earn more money</a>
+                                <a href="/Movie_Web/vnpay">Earn more money</a>
                             </div>
                             <input type="text" name="money" value="$${sessionScope.user_info.acc_money}" id="money" readonly>
                         </div>

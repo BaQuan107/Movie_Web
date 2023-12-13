@@ -63,6 +63,22 @@ public class UserHandle extends DBContext{
         }
         return null;
     }
+    public User_Info getUIByUaId(int id){
+        String sql="Select u.id, u.acc_money  from user_info as u  where _user_id= ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                User_Info a = new User_Info(rs.getInt(1),rs.getDouble(2));
+                return a;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
     
     //get Userinfo cmt by userinfo id
     public User_Info getUiByCmtId(int id) {
